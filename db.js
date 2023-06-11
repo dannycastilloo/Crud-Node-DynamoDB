@@ -1,6 +1,6 @@
 import {db, Table} from './db.config.js'
 
-// Crear o actualizar contactos
+// Crear o actualizar estudiantes
 const createOrUpdate = async (data = {}) =>{
     const params = {
         TableName: Table,
@@ -15,8 +15,8 @@ const createOrUpdate = async (data = {}) =>{
     }
 }
 
-// Leer todos los contactos
-const readAllContacts = async()=>{
+// Leer todos los estudiantes
+const readAllEstudiantes = async()=>{
     const params = {
         TableName: Table
     }
@@ -31,8 +31,8 @@ const readAllContacts = async()=>{
 
 }
 
-// Leer Contactos por ID
-const getContactById = async (value, key = 'id') => {
+// Leer Estudiante por ID
+const getEstudianteById = async (value, key = 'id') => {
     const params = {
         TableName: Table,
         Key: {
@@ -47,8 +47,8 @@ const getContactById = async (value, key = 'id') => {
     }
 }
 
-// Eliminar Contacto by ID
-const deleteContactById = async(value, key = 'id' ) => { 
+// Eliminar Estudiante by ID
+const deleteEstudianteById = async(value, key = 'id' ) => { 
     const params = {
         TableName: Table,
         Key: {
@@ -68,7 +68,7 @@ const deleteContactById = async(value, key = 'id' ) => {
 
 export {
     createOrUpdate,
-    readAllContacts,
-    getContactById,
-    deleteContactById
+    readAllEstudiantes,
+    getEstudianteById,
+    deleteEstudianteById
 }

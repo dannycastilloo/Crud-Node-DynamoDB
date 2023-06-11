@@ -1,11 +1,11 @@
 import express from 'express'
-import { createOrUpdate, deleteContactById, getContactById, readAllContacts } from './db.js'
+import { createOrUpdate, deleteEstudianteById, getEstudianteById, readAllEstudiantes } from './db.js'
 
 const router = express.Router()
 
-// Leer contactos
-router.get('/contacts', async(req, res) => {
-    const { success, data } = await readAllContacts()
+// Leer estudiantes
+router.get('/estudiantes', async(req, res) => {
+    const { success, data } = await readAllEstudiantes()
 
     if(success){
         return res.json({success, data})
@@ -13,10 +13,10 @@ router.get('/contacts', async(req, res) => {
     return res.status(500).json({success:false, messsage: "Error"})
 })
 
-// Obtener contacto por ID
-router.get('/contact/:id', async(req, res) => {
+// Obtener estudiante por ID
+router.get('/estudiante/:id', async(req, res) => {
     const { id } = req.params
-    const { success, data } = await getContactById(id)
+    const { success, data } = await getEstudianteById(id)
     console.log(data)
     if(success){
         return res.json({success, data})
@@ -26,8 +26,8 @@ router.get('/contact/:id', async(req, res) => {
 })
 
 
-// Crear contacto
-router.post('/contact', async(req, res) => {
+// Crear estudiante
+router.post('/estudiante', async(req, res) => {
     const { success, data } = await createOrUpdate(req.body)
 
     if(success){
@@ -38,13 +38,13 @@ router.post('/contact', async(req, res) => {
 })
 
 
-// Actualizar contacto por ID
-router.put('/contact/:id', async(req, res) => {
-    const contact = req.body
+// Actualizar estudiante por ID
+router.put('/estudiante/:id', async(req, res) => {
+    const estudiante = req.body
     const { id } = req.params
-    contact.id = parseInt(id)
+    estudiante.id = parseInt(id)
 
-    const { success, data } = await createOrUpdate(contact)
+    const { success, data } = await createOrUpdate(estudiante)
 
     if(success){
         return res.json({success, data})
@@ -53,11 +53,10 @@ router.put('/contact/:id', async(req, res) => {
     return res.status(500).json({success: false, message: "Error"})
 })
 
-
-// Eliminar contacto por ID
-router.delete('/contact/:id', async (req, res) => {
+// Eliminar estudiante por ID
+router.delete('/estudiante/:id', async (req, res) => {
     const { id } = req.params
-    const { success, data } = await deleteContactById(id)
+    const { success, data } = await deleteEstudianteById(id)
     if (success) {
       return res.json({ success, data })
     }
